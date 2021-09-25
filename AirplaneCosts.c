@@ -40,7 +40,7 @@ int daysOnTrip(){
 }
 
 /**
- * 
+ * Only being used as a tester so far
 */
 int main(int argc, char *argv[]){
     
