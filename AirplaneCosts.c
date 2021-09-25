@@ -5,8 +5,12 @@
  * how long stay is
  * Time related variables will be taken in 24 hr
  * format
+ * 
+ * Returns costs of airfare
  */
-void airPlane(){
+double airPlane(){
     double timeOfArrival;
+
     
+    return 0;
 }
