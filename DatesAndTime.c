@@ -23,7 +23,7 @@ double airPlane(){
  * Returns amount of days as type int
 */
 int daysOnTrip(){
-    char input;
+    char *input;
     int days = 0;
     printf("\nPlease input amount of days this trip will take.\n");
     scanf("%s",&input);
@@ -37,6 +37,17 @@ int daysOnTrip(){
         return daysOnTrip();
     }
     
+}
+
+/**
+ * Asks user for time of arrival on first day
+*/
+double timeOfArrival(){
+    char *input;
+    double arrivalTime;
+
+
+    return 0;
 }
 
 /**
