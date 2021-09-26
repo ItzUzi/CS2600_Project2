@@ -160,12 +160,11 @@ double privateVehicle(double parkingFees[][2], int totalDays){
  * check later on what values are covered by the company
  * Returns total cost of taxi service
 */
-double totalTaxiCost(int totalDays, double taxiCost[][2]){
-    double expense, cost;
+int totalTaxiCost(int totalDays, double taxiCost[][2]){
+    double cost;
     short coveredCost = 10; 
     short taxiIndex = 0;
     char input;
-    expense = 0;
     for (int day = 0; day < totalDays; day++){
 
     printf("\nInput ammount spent on taxi services on day %d\n", day);
@@ -180,9 +179,8 @@ double totalTaxiCost(int totalDays, double taxiCost[][2]){
     
     // The taxiIndex is the index for the taxi in transport costs
     taxiCost[day][taxiIndex] = cost;
-    expense += cost;
     }
-    return expense;
+    return 1;
 }
 
 /**
@@ -192,15 +190,14 @@ double totalTaxiCost(int totalDays, double taxiCost[][2]){
  * If taxi was not used, price of taxi per day = 0 
  * returns cost of taxi per day
 */
-double taxi(double taxiCost[][2], int totalDays){
+int taxi(double taxiCost[][2], int totalDays){
     short taxiIndex = 0;
-    double expense = 0;
     char input;
     printf("Did you use a taxi service during your trip?\n(y/n)\n");
     scanf("%s", &input);
     
     if (input == 'y')
-        expense = totalTaxiCost(totalDays, taxiCost);
+        totalTaxiCost(totalDays, taxiCost);
     else if (input == 'n')
         for (int day = 0; day < totalDays; day++)
             taxiCost[day][taxiIndex] = 0;
@@ -208,7 +205,7 @@ double taxi(double taxiCost[][2], int totalDays){
         printf("Input an acceptable value!\n");
         return taxi(taxiCost, totalDays);
     }
-    return expense;
+    return 0;
 }
 /**
  * Calculates total cost of the car rental
@@ -273,6 +270,6 @@ double transportMethod(double transportCost[][2], int totalDays){
     double totalExpense = 0;
     totalExpense += privateVehicle(transportCost, totalDays);
     totalExpense += carRental(transportCost, totalDays);
-    totalExpense += taxi(transportCost, totalDays);
+    taxi(transportCost, totalDays);
     return totalExpense;
 }
