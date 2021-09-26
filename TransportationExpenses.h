@@ -16,6 +16,44 @@ double airFare(int days, double arrival, double departure){
 }
 
 /**
+ * Asks user for value of parking fees per day
+ * Calculates cost of parking fees
+ * Stores values into array
+ * Returns total cost of parking fees
+*/
+double totalParkingFees(){
+    double totalExpense;
+
+    
+
+    return totalExpense;
+}
+
+/**
+ * Asks user if had to pay parking fees
+ * Calls parking fee total if input = y else returns 0
+ * Return total cost of parking fees
+*/
+double parkingFees(){
+    double fees;
+    char input;
+
+    printf("Did you have to pay any parking fees?\n(y/n)\n");
+    scanf("%s", &input);
+
+    if(input == 'y')
+        fees = totalParkingFees();
+    else if(input == 'n')
+        fees = 0;
+    else{
+        printf("Input an acceptable value!\n");
+        return parkingFees();
+    }
+
+    return fees;
+}
+
+/**
  * Asks user how many miles were driven if privateVehicle returns 1
  * calculates total cost of driving while using the constant .27
  * per mile driven
@@ -134,7 +172,7 @@ double carRentalCost(){
         printf("Input an acceptable value!\n");
         return carRentalCost();
     }
-    
+
     return expense;
 }
 
@@ -168,7 +206,7 @@ double carRental(){
 double transportMethod(double taxiCost[], int totalDays){
     double totalExpense = 0;
     totalExpense += privateVehicle();
-    totalExpense += taxi(taxiCost, totalDays);
     totalExpense += carRental();
+    totalExpense += taxi(taxiCost, totalDays);
     return totalExpense;
 }
