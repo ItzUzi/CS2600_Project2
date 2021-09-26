@@ -21,7 +21,7 @@ double airFare(int days, double arrival, double departure){
  * Stores values into array
  * Returns total cost of parking fees
 */
-double totalParkingFees(){
+double totalParkingFees(double parkingFees[][2], int totalDays){
     short feesIndex = 1;
     double totalExpense;
     char input;
@@ -43,7 +43,7 @@ double parkingFees(double transportCost[][2], int totalDays){
     scanf("%s", &input);
 
     if(input == 'y')
-        fees = totalParkingFees();
+        fees = totalParkingFees(transportCost, totalDays);
     else if(input == 'n'){
         for (int day = 0; day < totalDays; day++)
             transportCost[day][feesIndex] = 0;
@@ -64,9 +64,9 @@ double parkingFees(double transportCost[][2], int totalDays){
  * (miles should not equal 0 if this function is called)
  * Returns total cost of driving
 */
-double milesDriven(){
+double milesDriven(double transportCost[][2], int totalDays){
     //ppm = price per mile
-    double miles, mileCost, ppm;
+    double miles, mileCost, ppm, expense;
     ppm = 0.27;
     char input;
 
@@ -78,9 +78,10 @@ double milesDriven(){
 
     if (miles <= 0 && !strtod(&input, NULL)){
         printf("Input an acceptable value!\n");
-        return milesDriven();
+        return milesDriven(transportCost, totalDays);
     }
     mileCost = miles * ppm;
+    expense = mileCost + parkingFees(transportCost, totalDays);
     return mileCost;
 }
 /**
@@ -89,19 +90,19 @@ double milesDriven(){
  * return 1 if yes private vehicle
  * return 0 if no private vehicle 
 */
-double privateVehicle(){
+double privateVehicle(double parkingFees[][2], int totalDays){
     double expense;
     char input;
     printf("Did you use a private vehicle during your trip?\n(y/n)\n");
 
     scanf("%s", &input);
     if (input == 'y')
-        expense = milesDriven();
+        expense = milesDriven(parkingFees, totalDays);
     else if(input == 'n')
         expense = 0;
     else{
         printf("Please select acceptable answer!\n");
-        return privateVehicle();
+        return privateVehicle(parkingFees, totalDays);
     }
     return expense;
 }
@@ -129,8 +130,11 @@ double totalTaxiCost(int totalDays, double taxiCost[][2]){
     cost = strtod(&input, NULL);
     if (cost == -1)
         cost = 0;
+    
     // The taxiIndex is the index for the taxi in transport costs
+    printf("Made it to line 134\n");
     taxiCost[day][taxiIndex] = cost;
+    printf("Made it to line 136\n");
     expense += cost;
     }
     return expense;
@@ -211,8 +215,8 @@ double carRental(){
 */
 double transportMethod(double transportCost[][2], int totalDays){
     double totalExpense = 0;
-    totalExpense += privateVehicle();
-    totalExpense += carRental();
+    totalExpense += privateVehicle(transportCost, totalDays);
+    totalExpense += carRental(transportCost, totalDays);
     totalExpense += taxi(transportCost, totalDays);
     return totalExpense;
 }
