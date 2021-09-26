@@ -43,7 +43,7 @@ int daysOnTrip(){
  * Asks user for time of arrival on first day
  * returns that value as a double in order to calculate other costs
 */
-double timeOfArrival(){
+double getArrivalTime(){
     char input;
     double arrivalTime;
 
@@ -59,15 +59,4 @@ double timeOfArrival(){
         printf("Please select an acceptable time");
         return timeOfArrival();
     }
-}
-
-/**
- * Only being used as a tester so far
-*/
-int main(int argc, char *argv[]){
-    
-    daysOnTrip();
-    timeOfArrival();
-
-    return 0;
 }
