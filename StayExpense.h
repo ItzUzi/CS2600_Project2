@@ -124,21 +124,14 @@ void mealExpenseDepartureToArrival(double departure, double arrival, double meal
         mealExpenseArrival(arrival, meals, totalDays - 1);
 }
 
-double registrationFees() {
+double registrationFees(void) {
     char i;
     double fees;
-    printf("Were there any conference or seminar fees that were incurred? (y/n) ");
-    scanf("%ls", &i);
-    if (i == 'y'){
-        printf("How much was spent total on conferences and seminars? ");
-        scanf("%lf", &fees);
-    }
-    else if (i == 'n'){
-        fees = 0; 
-    }
-    else {
+    printf("How much was spent total on conferences and seminars? ");
+    scanf("%lf", &fees);
+    if (fees < 0){
         printf("Invalid input.\n");
-        registrationFees();
+        return registrationFees();
     }
     return fees;
 }

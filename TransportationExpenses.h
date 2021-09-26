@@ -14,7 +14,7 @@ double AirFare(void){
     scanf("%lf", &cost);
     if (cost < 0){
         printf("Invalid input.\n");
-        AirFare();
+        return AirFare();
     }
     return cost;
 }
