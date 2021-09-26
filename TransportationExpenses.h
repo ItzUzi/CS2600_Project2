@@ -45,11 +45,10 @@ double airfare(void){
  * Stores values into array
  * Returns total cost of parking fees
 */
-double totalParkingFees(double parkingFees[][2], int totalDays){
+void totalParkingFees(double parkingFees[][2], int totalDays){
     short feesIndex = 1;
     short company = 6;
-    double totalExpense, cost;
-    totalExpense = 0;
+    double cost;
     char input;
     for(int day = 0; day < totalDays; day++){
 
@@ -68,12 +67,9 @@ double totalParkingFees(double parkingFees[][2], int totalDays){
             printf("Do not input negative values!\n");
             // redoes same day in order to get acceptable value
             day--;
-        }else{
+        }else
             parkingFees[day][feesIndex] = cost;
-            totalExpense += cost;
-        }
     }
-    return totalExpense;
 }
 
 /**
@@ -81,27 +77,24 @@ double totalParkingFees(double parkingFees[][2], int totalDays){
  * Calls parking fee total if input = y else returns 0
  * Return total cost of parking fees
 */
-double parkingFees(double transportCost[][2], int totalDays){
+int parkingFees(double transportCost[][2], int totalDays){
     short feesIndex = 1;
-    double fees;
     char input;
 
     printf("Did you have to pay any parking fees?\n(y/n)\n");
     scanf("%s", &input);
     
     if(input == 'y')
-        fees = totalParkingFees(transportCost, totalDays);
-    else if(input == 'n'){
+        totalParkingFees(transportCost, totalDays);
+    else if(input == 'n')
         for (int day = 0; day < totalDays; day++)
             transportCost[day][feesIndex] = 0;
-        fees = 0;
-    }
     else{
         printf("Input an acceptable value!\n");
         return parkingFees(transportCost, totalDays);
     }
 
-    return fees;
+    return 1;
 }
 
 /**
