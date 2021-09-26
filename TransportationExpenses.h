@@ -13,13 +13,8 @@ double AirFare(void){
     printf("How much was the roundtrip airfair?\n");
     scanf("%lf", &cost);
     if (cost < 0){
-<<<<<<< HEAD
         printf("Invalid input.\n");
         return AirFare();
-=======
-        printf("Invalid syntax.\n");
-        AirFare();
->>>>>>> 36deaf7c152e55d57fe2427eb0681f40d5ba992d
     }
     return cost;
 }
