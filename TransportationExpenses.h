@@ -8,7 +8,7 @@
  * format
  * Returns costs of airfare
  */
-void AirFare(void){
+double AirFare(void){
     double cost; 
     printf("How much was the roundtrip airfair? ");
     scanf("%lf", &cost);
@@ -16,6 +16,7 @@ void AirFare(void){
         printf("Invalid syntax.\n");
         AirFare();
     }
+    return cost;
 }
 
 /**
