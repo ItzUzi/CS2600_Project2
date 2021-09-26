@@ -10,7 +10,7 @@
  */
 double AirFare(void){
     double cost; 
-    printf("How much was the roundtrip airfair? ");
+    printf("How much was the roundtrip airfair?\n");
     scanf("%lf", &cost);
     if (cost < 0){
         printf("Invalid syntax.\n");
@@ -31,11 +31,10 @@ double totalParkingFees(double parkingFees[][2], int totalDays){
     double totalExpense, cost;
     totalExpense = 0;
     char input;
-    printf("Made it to line 30\n");
     for(int day = 0; day < totalDays; day++){
 
         printf("How much were your parking fees for day %d?\n", day);
-        //program crashes input is 0 due to how strtod works
+        //program crashes input is 0 or letters due to how strtod works
         printf("(If parking fee for day is 0, input -1)\n");
         printf("Covered cost is %d, if you go over you will pay the difference!\n");
         scanf("%s", &input);
@@ -159,9 +158,7 @@ double totalTaxiCost(int totalDays, double taxiCost[][2]){
         cost = 0;
     
     // The taxiIndex is the index for the taxi in transport costs
-    printf("Made it to line 134\n");
     taxiCost[day][taxiIndex] = cost;
-    printf("Made it to line 136\n");
     expense += cost;
     }
     return expense;
