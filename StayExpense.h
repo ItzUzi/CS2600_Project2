@@ -117,13 +117,19 @@ void mealExpenseDepartureToArrival(double departure, double arrival, double meal
 
     mealExpenseDay(dinner, lunch, breakfast, 0, meals);
 
-    for (int dayNumber = 1; dayNumber < totalDays - 1; dayNumber++){
+    for (int dayNumber = 1; dayNumber < totalDays - 1; dayNumber++)
         mealExpenseDay(1, 1, 1, dayNumber, meals);
-    }
+
     if(totalDays != 1)
         mealExpenseArrival(arrival, meals, totalDays - 1);
 }
 
+/**
+ * 
+*/
+double reImbursementArray(){
+    return 0;
+    }
 
 /**
  * Calculates total expenses that will be covered by company
@@ -146,6 +152,10 @@ double actualExpenses(){
  * than allowableExpenses return value
  * Returns money business person owes company
 */
-double reImbursement(){
+double reImbursement(int totalDays, double mealCost[][3], double airfare, double transportCost, double costPerDay[][2]){
+    
+
+
+
     return 0;
 } 
