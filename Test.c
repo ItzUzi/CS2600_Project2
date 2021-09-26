@@ -7,7 +7,7 @@
 int main(int argc, char *argv[])
 {
     double timeOfArrival;
-    timeOfArrival = getArrivalTime();
+    timeOfArrival = setTime("arrival");
     char dayTime[3];
 
     if (timeOfArrival < 12)
