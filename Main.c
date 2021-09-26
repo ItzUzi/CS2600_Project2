@@ -10,7 +10,7 @@
 int main(int argc, char *argv[])
 {
     int amountOfDays;
-    double departure, arrival, transportCost, expenses, stayingFees;
+    double departure, arrival, transportCost, expenses, stayingFees, airfare;
     expenses = 0;
     stayingFees = 0;
     printf("Hello welcome to the Travel Expense calculator\n");
