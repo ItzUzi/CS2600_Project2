@@ -13,7 +13,7 @@ double AirFare(void){
     printf("How much was the roundtrip airfair?\n");
     scanf("%lf", &cost);
     if (cost < 0){
-        printf("Invalid input.\n");
+        printf("Invalid syntax.\n");
         AirFare();
     }
     return cost;
@@ -36,13 +36,16 @@ double totalParkingFees(double parkingFees[][2], int totalDays){
         printf("How much were your parking fees for day %d?\n", day);
         //program crashes input is 0 or letters due to how strtod works
         printf("(If parking fee for day is 0, input -1)\n");
+        printf("(If parking fees were already inputted, input -2)\n");
         printf("Covered cost is %d, if you go over you will pay the difference!\n", 6);
         scanf("%s", &input);
         cost = strtod(&input, NULL);
+        if(cost == -2)
+            break;
         if (cost == -1)
             cost = 0;
         if(cost < 0){
-            printf("Do not input negative values!");
+            printf("Do not input negative values!\n");
             // redoes same day in order to get acceptable value
             day--;
         }else{
@@ -192,8 +195,8 @@ double taxi(double taxiCost[][2], int totalDays){
  * (Car rental cost should not be zero if this function is called)
  * Returns total expense from car rental cost
 */
-double carRentalCost(){
-    double expense;
+double carRentalCost(double parkingCost[][2], int totalDays){
+    double expense = 0;
     char input;
 
     printf("What was the cost of the car rental service?\n");
@@ -202,7 +205,18 @@ double carRentalCost(){
 
     if (expense == 0){
         printf("Input an acceptable value!\n");
-        return carRentalCost();
+        return carRentalCost(parkingCost, totalDays);
+    }
+
+    printf("Did you acquire any parking fees?\n(y/n)\n");
+    printf("(If already inputted, input n)\n");
+    scanf("%s", &input);
+
+    if (input == 'y')
+        expense += parkingFees(parkingCost, totalDays);
+    else if(input != 'n'){
+        printf("Invalid input!\n");
+        carRentalCost(parkingCost, totalDays);
     }
 
     return expense;
@@ -213,7 +227,7 @@ double carRentalCost(){
  * Will calculate total cost of car rental service
  * Will return cost of car rental total
 */
-double carRental(){
+double carRental(double parkingFees[][2], int totalDays){
     double expense;
     char input;
 
@@ -221,12 +235,12 @@ double carRental(){
     scanf("%s", &input);
 
     if(input == 'y')
-        expense = carRentalCost();
+        expense = carRentalCost(parkingFees, totalDays);
     else if(input == 'n')
         expense = 0;
     else{
         printf("Input an acceptable value!\n");
-        return carRental();
+        return carRental(parkingFees, totalDays);
     }
     return expense;
 }
