@@ -9,6 +9,9 @@
 */
 int main(int argc, char *argv[])
 {
+    setAirFare();
+    printf("%.2f", getAirFare());
+
     int amountOfDays;
     double departure, arrival, transportCost;
     printf("Hello welcome to the Travel Expense calculator\n");
