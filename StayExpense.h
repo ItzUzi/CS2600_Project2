@@ -36,7 +36,8 @@ void mealExpenseDay(short dinner, short lunch, short breakfast, int dayNumber, d
         meals[dayNumber][2] = mealExpense("dinner", dayNumber, 16);
 }
 
-void mealExpenseArrival(double arrival, double meals[][3], int totalDays){
+void mealExpenseArrival(double arrival, double meals[][3], int lastDay){
+    printf("made it to line 40\n");
     short dinner = 0;
     short lunch = 0;
     short breakfast = 0;
@@ -54,7 +55,7 @@ void mealExpenseArrival(double arrival, double meals[][3], int totalDays){
         printf("You qualified for dinner to your arrival time!\n");
     }
     
-    mealExpenseDay(dinner, lunch, breakfast, totalDays, meals);
+    mealExpenseDay(dinner, lunch, breakfast, lastDay, meals);
 }
 
 /**
@@ -85,9 +86,10 @@ void mealExpenseDepartureAndArrival(double departure, double arrival, double mea
         printf("You qualifed for dinner due to your departure time!\n");
     }
 
-    for (int dayNumber = 0; dayNumber < totalDays - 1; dayNumber++)
-    {
-        mealExpenseDay(dinner, lunch, breakfast, dayNumber, meals);
+    mealExpenseDay(dinner, lunch, breakfast, 0, meals);
+
+    for (int dayNumber = 1; dayNumber < totalDays - 1; dayNumber++){
+        mealExpenseDay(1, 1, 1, dayNumber, meals);
     }
 
     mealExpenseArrival(arrival, meals, totalDays - 1);
