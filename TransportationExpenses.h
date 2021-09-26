@@ -22,9 +22,9 @@ double airFare(int days, double arrival, double departure){
  * Returns total cost of parking fees
 */
 double totalParkingFees(){
+    short feesIndex = 1;
     double totalExpense;
-
-    
+    char input;
 
     return totalExpense;
 }
@@ -34,7 +34,8 @@ double totalParkingFees(){
  * Calls parking fee total if input = y else returns 0
  * Return total cost of parking fees
 */
-double parkingFees(){
+double parkingFees(double transportCost[][2], int totalDays){
+    short feesIndex = 1;
     double fees;
     char input;
 
@@ -43,11 +44,14 @@ double parkingFees(){
 
     if(input == 'y')
         fees = totalParkingFees();
-    else if(input == 'n')
+    else if(input == 'n'){
+        for (int day = 0; day < totalDays; day++)
+            transportCost[day][feesIndex] = 0;
         fees = 0;
+    }
     else{
         printf("Input an acceptable value!\n");
-        return parkingFees();
+        return parkingFees(transportCost, totalDays);
     }
 
     return fees;
@@ -108,9 +112,10 @@ double privateVehicle(){
  * check later on what values are covered by the company
  * Returns total cost of taxi service
 */
-double totalTaxiCost(int totalDays, double taxiCost[]){
+double totalTaxiCost(int totalDays, double taxiCost[][2]){
     double expense, cost;
-    short coveredCost = 6;
+    short coveredCost = 6; 
+    short taxiIndex = 0;
     char input;
     expense = 0;
     for (int day = 0; day < totalDays; day++){
@@ -124,8 +129,8 @@ double totalTaxiCost(int totalDays, double taxiCost[]){
     cost = strtod(&input, NULL);
     if (cost == -1)
         cost = 0;
-
-    taxiCost[day] = cost;
+    // The taxiIndex is the index for the taxi in transport costs
+    taxiCost[day][taxiIndex] = cost;
     expense += cost;
     }
     return expense;
@@ -138,7 +143,8 @@ double totalTaxiCost(int totalDays, double taxiCost[]){
  * If taxi was not used, price of taxi per day = 0 
  * returns cost of taxi per day
 */
-double taxi(double taxiCost[], int totalDays){
+double taxi(double taxiCost[][2], int totalDays){
+    short taxiIndex = 0;
     double expense = 0;
     char input;
     printf("Did you use a taxi service during your trip?\n(y/n)\n");
@@ -147,8 +153,8 @@ double taxi(double taxiCost[], int totalDays){
     if (input == 'y')
         expense = totalTaxiCost(totalDays, taxiCost);
     else if (input == 'n')
-        for (int i = 0; i < totalDays; i++)
-            taxiCost[i] = 0;
+        for (int day = 0; day < totalDays; day++)
+            taxiCost[day][taxiIndex] = 0;
     else{
         printf("Input an acceptable value!\n");
         return taxi(taxiCost, totalDays);
@@ -203,10 +209,10 @@ double carRental(){
  * Asks user if private car, car rental, or if taxi service was used
  * Will return total costs of transportation
 */
-double transportMethod(double taxiCost[], int totalDays){
+double transportMethod(double transportCost[][2], int totalDays){
     double totalExpense = 0;
     totalExpense += privateVehicle();
     totalExpense += carRental();
-    totalExpense += taxi(taxiCost, totalDays);
+    totalExpense += taxi(transportCost, totalDays);
     return totalExpense;
 }
