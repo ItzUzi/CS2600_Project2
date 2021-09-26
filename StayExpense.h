@@ -125,25 +125,27 @@ void mealExpenseDepartureToArrival(double departure, double arrival, double meal
 }
 
 /**
- * 
+ * Called to check between arrays that are based on daily values
+ * Returns total expense above whats allowed by the company
 */
 double reImbursementArray(){
     return 0;
     }
 
 /**
- * Calculates total expenses that will be covered by company
- * returns total expenses company will pay for
+ * Called to check what accepted daily values are
+ * Calls reimbursement array
+ * Returns total expenses above company
 */
-double allowableExpenses(int days){
+double allowableExpensesArray(){
     return 0;
 }
 
 /**
- * Calculates total expenses accrued by business person
- * returns total expenses acrued by business person
+ * Calculates total expenses that will be covered by company
+ * returns total expenses company will pay for
 */
-double actualExpenses(){
+double allowableExpenses(int days){
     return 0;
 }
 
