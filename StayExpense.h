@@ -124,6 +124,25 @@ void mealExpenseDepartureToArrival(double departure, double arrival, double meal
         mealExpenseArrival(arrival, meals, totalDays - 1);
 }
 
+double registrationFees() {
+    char i;
+    double fees;
+    printf("Were there any conference or seminar fees that were incurred? (y/n) ");
+    scanf("%ls", &i);
+    if (i == 'y'){
+        printf("How much was spent total on conferences and seminars? ");
+        scanf("%lf", &fees);
+    }
+    else if (i == 'n'){
+        fees = 0; 
+    }
+    else {
+        printf("Invalid input.\n");
+        registrationFees();
+    }
+    return fees;
+}
+
 /**
  * Asks user for price per night at hotel spent
  * Lets user know the copany accepted amount
