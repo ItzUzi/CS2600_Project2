@@ -155,9 +155,7 @@ double totalTaxiCost(int totalDays, double taxiCost[][2]){
         cost = 0;
     
     // The taxiIndex is the index for the taxi in transport costs
-    printf("Made it to line 134\n");
     taxiCost[day][taxiIndex] = cost;
-    printf("Made it to line 136\n");
     expense += cost;
     }
     return expense;

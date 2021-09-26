@@ -36,11 +36,7 @@ int main(int argc, char *argv[])
            printf("Meal cost is $%.2lf\n", meals[i][j]);
        }
     }
-    /**
-     * Can make this a 2D array and can have different inputs mean different things
-     * ie cost[0][0] = taxiCost at day 0
-     *    cost[0][1] = parking fee cost at day 0
-    */
+    
     int taxiCost = 0; 
     int parkingFees = 0;
     // Only takes into consideration the fees the company takes care of based on daily values
