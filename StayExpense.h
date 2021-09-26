@@ -3,7 +3,8 @@
 
 /**
  * This file will take care of expenses such as meal expenses
- * and lodging expenses
+ * and lodging expenses using inputs taken from main as well as 
+ * inputs taken within certain methods
 */
 
 /**
@@ -37,8 +38,11 @@ void mealExpenseDay(short dinner, short lunch, short breakfast, int dayNumber, d
         meals[dayNumber][2] = mealExpense("dinner", dayNumber, 16);
 }
 
+/**
+ * Shows qualification for meals on last day with regards to the day of arrival
+ * calls mealExpenseDay
+*/
 void mealExpenseArrival(double arrival, double meals[][3], int lastDay){
-    printf("made it to line 40\n");
     short dinner = 0;
     short lunch = 0;
     short breakfast = 0;
@@ -63,11 +67,12 @@ void mealExpenseArrival(double arrival, double meals[][3], int lastDay){
 }
 
 /**
- * This function will calculate the meal expenses for the first
- * day of the business trip
+ * This function will calculate the meal expenses from the first
+ * day of the business trip to the last
  * Time is based on 24hr format
+ * Tells user whether they qualify for meals on the first day
 */
-void mealExpenseDepartureAndArrival(double departure, double arrival, double meals[][3], int totalDays){
+void mealExpenseDepartureToArrival(double departure, double arrival, double meals[][3], int totalDays){
     /**
      * Sets meals as 0 to substitute boolean values
      * meals = 0 are not taken into consideration
@@ -107,7 +112,7 @@ void mealExpenseDepartureAndArrival(double departure, double arrival, double mea
  * Calculates total expenses that will be covered by company
  * returns total expenses company will pay for
 */
-double allowableExpenses(int days, double departure, double arrival){
+double allowableExpenses(int days){
     return 0;
 }
 
