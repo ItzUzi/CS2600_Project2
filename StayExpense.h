@@ -90,11 +90,11 @@ void mealExpenseDepartureToArrival(double departure, double arrival, double meal
      * user should not be able to qualify for these meals
     */
     if(totalDays == 1){
-        if (arrival < 18)
+        if (arrival <= 18)
             time3 = -1;
-        if(arrival < 12)
+        if(arrival <= 12)
             time2 = -1;
-        if(arrival < 7)
+        if(arrival <= 7)
             time1 = -1;
     }
 
