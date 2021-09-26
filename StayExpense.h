@@ -125,6 +125,40 @@ void mealExpenseDepartureToArrival(double departure, double arrival, double meal
 }
 
 /**
+ * Asks user for price per night at hotel spent
+ * Lets user know the copany accepted amount
+ * Returns total hotel expenses
+*/
+double hotelExpenses(double hotelCosts[], int totalDays){
+    double cost, totalExpense;
+    totalExpense = 0;
+    char input;
+    short acceptedAmount = 90;
+    for (int day = 0; day < totalDays; day++){
+        printf("Input amount spent on lodging on day %d.\n", day);
+        printf("(The amount covered by the company is %d", 90);
+        printf(", anything over will be reimbursed)\n");
+        printf("(If cost of day is 0, input -1)\n");
+        
+        scanf("%s", &input);
+        cost = strtod(&input, NULL);
+
+        if (cost == -1)
+            cost = 0;
+        if(cost < 0){
+            printf("Input an accepted value.\n");
+            day--;
+        }else{
+        hotelCosts[day] = cost;
+        totalExpense += cost;
+        }
+    }
+    
+
+    return totalExpense;
+}
+
+/**
  * Called to check between arrays that are based on daily values
  * Returns total expense above whats allowed by the company
 */

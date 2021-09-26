@@ -36,7 +36,7 @@ double totalParkingFees(double parkingFees[][2], int totalDays){
         printf("How much were your parking fees for day %d?\n", day);
         //program crashes input is 0 or letters due to how strtod works
         printf("(If parking fee for day is 0, input -1)\n");
-        printf("Covered cost is %d, if you go over you will pay the difference!\n");
+        printf("Covered cost is %d, if you go over you will pay the difference!\n", 6);
         scanf("%s", &input);
         cost = strtod(&input, NULL);
         if (cost == -1)
@@ -45,7 +45,6 @@ double totalParkingFees(double parkingFees[][2], int totalDays){
             printf("Do not input negative values!");
             // redoes same day in order to get acceptable value
             day--;
-            totalParkingFees(parkingFees, totalDays);
         }else{
             parkingFees[day][feesIndex] = cost;
             totalExpense += cost;
@@ -66,7 +65,6 @@ double parkingFees(double transportCost[][2], int totalDays){
 
     printf("Did you have to pay any parking fees?\n(y/n)\n");
     scanf("%s", &input);
-    printf("Made it to line 66\n");
     
     if(input == 'y')
         fees = totalParkingFees(transportCost, totalDays);
@@ -141,7 +139,7 @@ double privateVehicle(double parkingFees[][2], int totalDays){
 */
 double totalTaxiCost(int totalDays, double taxiCost[][2]){
     double expense, cost;
-    short coveredCost = 6; 
+    short coveredCost = 10; 
     short taxiIndex = 0;
     char input;
     expense = 0;

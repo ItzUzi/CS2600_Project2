@@ -36,12 +36,16 @@ int main(int argc, char *argv[])
            printf("Meal cost is $%.2lf\n", meals[i][j]);
        }
     }
-    
+
     int taxiCost = 0; 
     int parkingFees = 0;
     // Only takes into consideration the fees the company takes care of based on daily values
     double transportationCost[amountOfDays][2];
     transportCost = transportMethod(transportationCost, amountOfDays);
-    printf("Total transport cost: $%.2lf", transportCost);
+    printf("Total transport cost: $%.2lf\n", transportCost);
+
+    double hotelCost[amountOfDays];
+    double lodgingCosts = hotelExpenses(hotelCost, amountOfDays); 
+    printf("total lodging is: $%.2lf\n", lodgingCosts);
     return 0;
 }
