@@ -23,9 +23,31 @@ double airFare(int days, double arrival, double departure){
 */
 double totalParkingFees(double parkingFees[][2], int totalDays){
     short feesIndex = 1;
-    double totalExpense;
+    short company = 6;
+    double totalExpense, cost;
+    totalExpense = 0;
     char input;
+    printf("Made it to line 30\n");
+    for(int day = 0; day < totalDays; day++){
 
+        printf("How much were your parking fees for day %d?\n", day);
+        //program crashes input is 0 due to how strtod works
+        printf("(If parking fee for day is 0, input -1)\n");
+        printf("Covered cost is %d, if you go over you will pay the difference!\n");
+        scanf("%s", &input);
+        cost = strtod(&input, NULL);
+        if (cost == -1)
+            cost = 0;
+        if(cost < 0){
+            printf("Do not input negative values!");
+            // redoes same day in order to get acceptable value
+            day--;
+            totalParkingFees(parkingFees, totalDays);
+        }else{
+            parkingFees[day][feesIndex] = cost;
+            totalExpense += cost;
+        }
+    }
     return totalExpense;
 }
 
@@ -41,7 +63,7 @@ double parkingFees(double transportCost[][2], int totalDays){
 
     printf("Did you have to pay any parking fees?\n(y/n)\n");
     scanf("%s", &input);
-
+    printf("Made it to line 66\n");
     if(input == 'y')
         fees = totalParkingFees(transportCost, totalDays);
     else if(input == 'n'){
