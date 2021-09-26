@@ -10,6 +10,7 @@
 int main(int argc, char *argv[])
 {
     int amountOfDays;
+    //expenses are company allowed, Not day dependent ie: airfare, miles driven
     double departure, arrival, transportCost, expenses, stayingFees, airfare;
     expenses = 0;
     stayingFees = 0;
