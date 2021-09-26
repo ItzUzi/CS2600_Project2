@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
            printf("Meal cost is $%.2lf\n", meals[i][j]);
        }
     }
-
-    transportCost = transportMethod();
-    printf("Total transport cost: %.2lf", transportCost);
+    double taxiCost[amountOfDays];
+    transportCost = transportMethod(taxiCost, amountOfDays);
+    printf("Total transport cost: $%.2lf", transportCost);
     return 0;
 }
