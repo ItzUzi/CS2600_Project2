@@ -8,14 +8,34 @@
  * format
  * Returns costs of airfare
  */
-double AirFare(void){
-    double cost; 
+double airfare() {
+    double cost;
     printf("How much was the roundtrip airfair?\n");
     scanf("%lf", &cost);
     if (cost < 0){
         printf("Invalid input.\n");
-        return AirFare();
+        return airfare();
     }
+    return cost;
+}
+
+double airfareValidation(void){
+    double cost;
+    char i;
+
+    printf("Did you travel by air? (y/n) ");
+    scanf("%ls", &i);
+
+    if (i == 'y') {
+        return airfare();
+    }
+    else if (i == 'n'){
+        cost = 0;
+    }
+    else {
+        printf("Invalid input. Try again.\n");
+    }
+
     return cost;
 }
 
