@@ -14,11 +14,7 @@ double airfare() {
     scanf("%lf", &cost);
     if (cost < 0){
         printf("Invalid input.\n");
-<<<<<<< HEAD
-        return AirFare();
-=======
         return airfare();
->>>>>>> 16cec594b34d8bd5548e5d5684f0a8b2df22c162
     }
     return cost;
 }

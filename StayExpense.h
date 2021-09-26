@@ -188,12 +188,8 @@ double reImbursementArray(double mealCost[][3], double transportPerDay[][2], dou
         for(int index = 0; index < 2; index++)
             total2 += transportPerDay[day][index] - allowedTransportCost[index];
         total3 += hotelCost[day] - allowedLodgingCost;
-        printf("%.2lf\n", total1);
-        printf("%.2lf\n", total2);
-        printf("%.2lf\n", total3);
         reimbursement += total1 + total2 + total3;
     }
-    printf("%.2lf\n", reimbursement);
 
     return reimbursement;
 }
@@ -203,7 +199,7 @@ double reImbursementArray(double mealCost[][3], double transportPerDay[][2], dou
  * Called to check allowable costs
  * Returns total expense allowed by the company
 */
-double companyAllowed(int totalDays){
+double companyAllowedDayDependent(int totalDays){
     double allowableCost = 0;
     // Initiates arrays that will be the basis for the allowed costs
     int allowedMeals[3] = {9, 12, 16};
@@ -222,6 +218,12 @@ double companyAllowed(int totalDays){
 }
 
 /**
+ * Include airfare, miles driven ect.
+ * 
+*/
+double companyAllowedTotal(int totalDays){}
+
+/**
  * Called if actualExpenses() return value greater
  * than allowableExpenses return value
  * Returns money business person owes company
@@ -229,7 +231,6 @@ double companyAllowed(int totalDays){
 double reImbursement(int totalDays, double mealCost[][3], double transportPerDay[][2], double hotelCost[]){
     double amount;
     amount = reImbursementArray(mealCost, transportPerDay, hotelCost, totalDays);
-    printf("Line 232: %.2lf\n", amount);
 
     if(amount > 0)
         printf("You owe the company $%.2lf\n", amount);
@@ -245,7 +246,10 @@ double reImbursement(int totalDays, double mealCost[][3], double transportPerDay
  * Calculates total amount spent by business person
  * Returns total amount spent
 */
-double totalCost(){
+double totalCost(double totalExpenses, int totalDays, double mealCost[][3], double transportPerDay[][2], double hotelCost[]){
+    printf("The total expenses ");
+
+
 
     return 0;
 }
