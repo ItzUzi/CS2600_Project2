@@ -16,7 +16,8 @@ double mealExpense(char meal[], int dayNumber, int allowedPrice){
     char input;
     printf("Please type in the amount spent on %s on day %d of the trip.\n", meal, dayNumber);
     printf("(The allowed price for this meal is %d, anything above will be reimbursed by you)\n", allowedPrice);
-
+    // Takes user input
+    // Do not input letters or program will crash
     scanf("%s", &input);
     expense = strtod(&input, NULL);
     return expense;
@@ -45,15 +46,18 @@ void mealExpenseArrival(double arrival, double meals[][3], int lastDay){
     if(arrival > 8){
         breakfast = 1;
         printf("You qualified for breakfast due to your arrival time!\n");
-    }
+    }else
+        printf("You did not qualify for breakfast due to your arrival time!\n");
     if(arrival > 13){
         lunch = 1;
         printf("You qualified for lunch due to your arrival time!\n");
-    }
+    }else
+        printf("You did not qualify for lunch due to your arrival time!\n");
     if(arrival > 19){
         dinner = 1;
         printf("You qualified for dinner to your arrival time!\n");
-    }
+    }else
+        printf("You did not qualify for dinner due to your arrival time!\n");
     
     mealExpenseDay(dinner, lunch, breakfast, lastDay, meals);
 }
@@ -76,15 +80,18 @@ void mealExpenseDepartureAndArrival(double departure, double arrival, double mea
     if (departure < 7){
         breakfast = 1;
         printf("You qualified for breakfast due to your departure time\n");
-    }
+    }else
+        printf("You did not qualify for breakfast due to your departure time\n");
     if (departure < 12){
         lunch = 1;
         printf("You qualifed for lunch due to your departure time!\n");
-    }
+    }else
+        printf("You did not qualify for lunch due to your departure time!\n");
     if(departure < 18){
         dinner = 1;
         printf("You qualifed for dinner due to your departure time!\n");
-    }
+    }else
+        printf("You did not qualify for dinner due to your departure time!\n");
 
     mealExpenseDay(dinner, lunch, breakfast, 0, meals);
 
