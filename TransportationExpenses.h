@@ -15,7 +15,7 @@ double airfareValidation() {
     if (cost < 0){
         printf("Invalid input.\n");
         return airfareValidation();
-    }
+    }   
     return cost;
 }
 
