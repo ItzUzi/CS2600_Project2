@@ -57,6 +57,6 @@ double getArrivalTime(){
         return arrivalTime;
     else{
         printf("Please select an acceptable time");
-        return timeOfArrival();
+        return getArrivalTime();
     }
 }
