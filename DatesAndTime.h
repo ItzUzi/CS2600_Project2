@@ -42,19 +42,23 @@ int daysOnTrip(){
 /**
  * Asks user for time of arrival on first day
  * returns that value as a double in order to calculate other costs
+ * time is in 24hr format
 */
 double getArrivalTime(){
     char input;
     double arrivalTime;
 
-    printf("\nPlease input the time of arrival. (0-23)\n");
+    printf("\nPlease input the time of arrival. (1-24)\n");
     printf("(6.25 = 6:15am, 18.5 = 6:30pm)\n");
     scanf("%s", &input);
 
     arrivalTime = strtod(&input, NULL);
 
-    if(arrivalTime > -1 && arrivalTime <= 23 && strtod(&input, NULL))
+    if(arrivalTime >= 1 && arrivalTime < 25){
+        if (arrivalTime == 24)
+            arrivalTime = 0;
         return arrivalTime;
+    }
     else{
         printf("Please select an acceptable time");
         return getArrivalTime();
