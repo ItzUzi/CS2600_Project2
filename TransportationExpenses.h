@@ -10,7 +10,7 @@
  */
 double airfareValidation() {
     double cost;
-    printf("How much was the roundtrip airfair?");
+    printf("How much was the roundtrip airfair? ");
     scanf("%lf", &cost);
     if (cost < 0){
         printf("Invalid input.\n");
@@ -54,9 +54,9 @@ void totalParkingFees(double parkingFees[][2], int totalDays){
 
         printf("How much were your parking fees for day %d?\n", day);
         //program crashes input is 0 or letters due to how strtod works
+        printf("(Covered cost is $%d, if you go over you will pay the difference!)\n", 6);
         printf("(If parking fee for day is 0, input -1)\n");
         printf("(If parking fees were already inputted, input -2)\n");
-        printf("Covered cost is %d, if you go over you will pay the difference!\n", 6);
         scanf("%s", &input);
         cost = strtod(&input, NULL);
         if(cost == -2)
@@ -218,8 +218,8 @@ double carRentalCost(double parkingCost[][2], int totalDays){
         return carRentalCost(parkingCost, totalDays);
     }
 
-    printf("Did you acquire any parking fees?\n(y/n)\n");
-    printf("(If already inputted, input n)\n");
+    printf("Did you acquire any parking fees?\n");
+    printf("(If already inputted, input n)\n(y/n)\n");
     scanf("%s", &input);
 
     if (input == 'y')

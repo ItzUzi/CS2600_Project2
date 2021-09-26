@@ -16,7 +16,7 @@ double mealExpense(char meal[], int dayNumber, int allowedPrice){
     double expense = 0;
     char input;
     printf("Please type in the amount spent on %s on day %d of the trip.\n", meal, dayNumber);
-    printf("(The allowed price for this meal is %d, anything above will be reimbursed by you)\n", allowedPrice);
+    printf("(The allowed price for this meal is $%d, anything above will be reimbursed by you)\n", allowedPrice);
     // Takes user input
     // Do not input letters or program will crash
     scanf("%s", &input);
@@ -141,14 +141,13 @@ double registrationFees(void) {
  * Lets user know the copany accepted amount
  * Returns total hotel expenses
 */
-double hotelExpenses(double hotelCosts[], int totalDays){
-    double cost, totalExpense;
-    totalExpense = 0;
+void hotelExpenses(double hotelCosts[], int totalDays){
+    double cost;
     char input[4];
     short acceptedAmount = 90;
     for (int day = 0; day < totalDays; day++){
         printf("Input amount spent on lodging on day %d.\n", day);
-        printf("(The amount covered by the company is %d", 90);
+        printf("(The amount covered by the company is $%d", 90);
         printf(", anything over will be reimbursed)\n");
         printf("(If cost of day is 0, input -1)\n");
         
@@ -160,14 +159,9 @@ double hotelExpenses(double hotelCosts[], int totalDays){
         if(cost < 0){
             printf("Input an accepted value.\n");
             day--;
-        }else{
+        }else
         hotelCosts[day] = cost;
-        totalExpense += cost;
-        }
     }
-    
-
-    return totalExpense;
 }
 
 /**
