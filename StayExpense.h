@@ -81,18 +81,35 @@ void mealExpenseDepartureToArrival(double departure, double arrival, double meal
     short lunch = 0;
     short breakfast = 0;
 
+    short time1 = 7;
+    short time2 = 12;
+    short time3 = 18;
+
+    /**
+     * if arrival time is less than time values, 
+     * user should not be able to qualify for these meals
+    */
+    if(totalDays == 1){
+        if (arrival < 18)
+            time3 = -1;
+        if(arrival < 12)
+            time2 = -1;
+        if(arrival < 7)
+            time1 = -1;
+    }
+
     //Checks departure time to see if meals are qualified
-    if (departure < 7){
+    if (departure < time1){
         breakfast = 1;
         printf("You qualified for breakfast due to your departure time\n");
     }else
         printf("You did not qualify for breakfast due to your departure time\n");
-    if (departure < 12){
+    if (departure < time2){
         lunch = 1;
         printf("You qualifed for lunch due to your departure time!\n");
     }else
         printf("You did not qualify for lunch due to your departure time!\n");
-    if(departure < 18){
+    if(departure < time3){
         dinner = 1;
         printf("You qualifed for dinner due to your departure time!\n");
     }else
@@ -103,8 +120,8 @@ void mealExpenseDepartureToArrival(double departure, double arrival, double meal
     for (int dayNumber = 1; dayNumber < totalDays - 1; dayNumber++){
         mealExpenseDay(1, 1, 1, dayNumber, meals);
     }
-
-    mealExpenseArrival(arrival, meals, totalDays - 1);
+    if(totalDays != 1)
+        mealExpenseArrival(arrival, meals, totalDays - 1);
 }
 
 

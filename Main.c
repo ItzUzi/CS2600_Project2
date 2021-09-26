@@ -14,14 +14,24 @@ int main(int argc, char *argv[])
     int amountOfDays;
     double departure, arrival;
     printf("Hello welcome to the Travel Expense calculator\n");
+    amountOfDays = daysOnTrip();
+    
     departure = setTime("Departure");
     arrival = setTime("Arrival");
-    amountOfDays = daysOnTrip();
+
+    if(amountOfDays == 1 && departure >= arrival)
+       while (departure >= arrival)
+        {
+            printf("\nDeparture and arrival time are not acceptable.\n");
+            printf("Please use acceptable departure and arrival times.\n");
+            departure = setTime("Departure");
+            arrival = setTime("Arrival");
+        }
 
     // creates array showing all meals, as well as differentiating between meals
     double meals[amountOfDays][3];
 
-    mealExpenseDepartureAndArrival(departure, arrival, meals, amountOfDays);
+    mealExpenseDepartureToArrival(departure, arrival, meals, amountOfDays);
 
     for (int i = 0; i < amountOfDays; i++)
     {
@@ -30,8 +40,5 @@ int main(int argc, char *argv[])
        }
     }
     
-
-
-
     return 0;
 }
