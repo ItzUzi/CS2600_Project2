@@ -117,6 +117,26 @@ double taxi(double taxiCost[], int totalDays){
     }
     return expense;
 }
+/**
+ * Calculates total cost of the car rental
+ * (Car rental cost should not be zero if this function is called)
+ * Returns total expense from car rental cost
+*/
+double carRentalCost(){
+    double expense;
+    char input;
+
+    printf("What was the cost of the car rental service?\n");
+    scanf("%s", &input);
+    expense = strtod(&input, NULL);
+
+    if (expense == 0){
+        printf("Input an acceptable value!\n");
+        return carRentalCost();
+    }
+    
+    return expense;
+}
 
 /**
  * Function called if transportMethod() returns 0
@@ -124,7 +144,21 @@ double taxi(double taxiCost[], int totalDays){
  * Will return cost of car rental total
 */
 double carRental(){
-    return 0;
+    double expense;
+    char input;
+
+    printf("Did you use a car rental service during your trip?\n(y/n)\n");
+    scanf("%s", &input);
+
+    if(input == 'y')
+        expense = carRentalCost();
+    else if(input == 'n')
+        expense = 0;
+    else{
+        printf("Input an acceptable value!\n");
+        return carRental();
+    }
+    return expense;
 }
 
 /**
@@ -135,5 +169,6 @@ double transportMethod(double taxiCost[], int totalDays){
     double totalExpense = 0;
     totalExpense += privateVehicle();
     totalExpense += taxi(taxiCost, totalDays);
+    totalExpense += carRental();
     return totalExpense;
 }
