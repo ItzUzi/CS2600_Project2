@@ -219,37 +219,50 @@ double companyAllowedDayDependent(int totalDays){
 
 /**
  * Include airfare, miles driven ect.
- * 
+ * includes expenses that are covered by company at no extra cost
 */
-double companyAllowedTotal(int totalDays){}
+double companyAllowedTotal(int totalDays, double totalExpenses){
+    double allowedTotal;
+
+    allowedTotal = companyAllowedDayDependent(totalDays);
+
+    allowedTotal += totalExpenses;
+
+    return allowedTotal;
+}
 
 /**
- * Called if actualExpenses() return value greater
- * than allowableExpenses return value
- * Returns money business person owes company
+ * Called if when values of total and company provided are initialized
+ * Prints if money is owed/saved
 */
-double reImbursement(int totalDays, double mealCost[][3], double transportPerDay[][2], double hotelCost[]){
-    double amount;
-    amount = reImbursementArray(mealCost, transportPerDay, hotelCost, totalDays);
+void reImbursement(double totalAccrued, double companyProvided){
+    double total;
+    total = totalAccrued - companyProvided;
 
-    if(amount > 0)
-        printf("You owe the company $%.2lf\n", amount);
-    else if(amount == 0)
+    if(total > 0)
+        printf("You owe the company $%.2lf\n", total);
+    else if(total == 0)
         printf("You broke even with the company!");
     else{
-        amount *= -1;
-        printf("You saved the company $%.2lf\n", amount);
+        total *= -1;
+        printf("You saved the company $%.2lf\n", total);
     }
-    return amount;
 }
 /**
  * Calculates total amount spent by business person
  * Returns total amount spent
 */
-double totalCost(double totalExpenses, int totalDays, double mealCost[][3], double transportPerDay[][2], double hotelCost[]){
-    printf("The total expenses ");
+void totalCost(double totalExpenses, int totalDays, double mealCost[][3], double transportPerDay[][2], double hotelCost[]){
+    double companyProvided, totalAccrued;
 
+    companyProvided = companyAllowedTotal(totalDays, totalExpenses);
 
+    printf("The total allowable expenses for this business trip is: $%.2lf.\n", companyProvided);
 
-    return 0;
+    totalAccrued = reImbursementArray(mealCost, transportPerDay, hotelCost, totalDays);
+    totalAccrued += companyProvided;
+
+    printf("The total amount accrued by the business person is: $%.2lf.\n", totalAccrued);
+
+    reImbursement(totalAccrued, companyProvided);
 }
