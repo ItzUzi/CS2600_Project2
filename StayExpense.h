@@ -6,6 +6,11 @@
  * and lodging expenses
 */
 
+/**
+ * Helper method for meal expense day meant to take in dayNumber, allowed price, and meal name
+ * and let user know allowed price
+ * Returns expense user paid
+*/
 double mealExpense(char meal[], int dayNumber, int allowedPrice){
     double expense = 0;
     char input;
@@ -17,20 +22,39 @@ double mealExpense(char meal[], int dayNumber, int allowedPrice){
     return expense;
 }
 
+/**
+ * Takes booleans of whether user qualifies for certain meals based on their answers
+ * calls mealExpense() in order to implement meal value onto array
+*/
 void mealExpenseDay(short dinner, short lunch, short breakfast, int dayNumber, double meals[][3]){
-    double expense;
-    for (int i = 0; i < 3; i++)
-    {
-        meals[dayNumber][i] = 0;
+
+    if (breakfast == 1)
+        meals[dayNumber][0] = mealExpense("breakfast", dayNumber, 9);
+    if (lunch == 1)
+        meals[dayNumber][1] = mealExpense("lunch", dayNumber, 12);
+    if(dinner == 1)
+        meals[dayNumber][2] = mealExpense("dinner", dayNumber, 16);
+}
+
+void mealExpenseArrival(double arrival, double meals[][3], int totalDays){
+    short dinner = 0;
+    short lunch = 0;
+    short breakfast = 0;
+
+    if(arrival > 8){
+        breakfast = 1;
+        printf("You qualified for breakfast due to your arrival time!\n");
+    }
+    if(arrival > 13){
+        lunch = 1;
+        printf("You qualified for lunch due to your arrival time!\n");
+    }
+    if(arrival > 19){
+        dinner = 1;
+        printf("You qualified for dinner to your arrival time!\n");
     }
     
-    if (breakfast == 1){
-        meals[dayNumber][0] = mealExpense("breakfast", dayNumber, 9);
-    }
-    if (lunch == 1)
-        meals[dayNumber][1] += mealExpense("lunch", dayNumber, 12);
-    if(dinner == 1)
-        meals[dayNumber][2] += mealExpense("dinner", dayNumber, 16);
+    mealExpenseDay(dinner, lunch, breakfast, totalDays, meals);
 }
 
 /**
@@ -38,7 +62,7 @@ void mealExpenseDay(short dinner, short lunch, short breakfast, int dayNumber, d
  * day of the business trip
  * Time is based on 24hr format
 */
-void mealExpenseDeparture(double departure, double meals[][3], int totalDays){
+void mealExpenseDepartureAndArrival(double departure, double arrival, double meals[][3], int totalDays){
     /**
      * Sets meals as 0 to substitute boolean values
      * meals = 0 are not taken into consideration
@@ -50,26 +74,24 @@ void mealExpenseDeparture(double departure, double meals[][3], int totalDays){
     //Checks departure time to see if meals are qualified
     if (departure < 7){
         breakfast = 1;
-        printf("You qualified for breakfast!\n");
+        printf("You qualified for breakfast due to your departure time\n");
     }
     if (departure < 12){
         lunch = 1;
-        printf("You qualifed for lunch!\n");
+        printf("You qualifed for lunch due to your departure time!\n");
     }
     if(departure < 18){
         dinner = 1;
-        printf("You qualifed for dinner!\n");
+        printf("You qualifed for dinner due to your departure time!\n");
     }
 
-    for (int dayNumber = 0; dayNumber < totalDays; dayNumber++)
+    for (int dayNumber = 0; dayNumber < totalDays - 1; dayNumber++)
     {
         mealExpenseDay(dinner, lunch, breakfast, dayNumber, meals);
     }
-    
 
+    mealExpenseArrival(arrival, meals, totalDays - 1);
 }
-
-
 
 
 /**
