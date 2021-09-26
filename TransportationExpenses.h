@@ -10,12 +10,12 @@
  */
 
 double cost; 
-void setAirFare(void){
-    printf("How much was the roundtrip airfair? ");
+void setAirFare(){
+    printf("How much was the roundtrip airfair?\n");
     scanf("%lf", &cost);
 }
 
-double getAirFare(void) {
+double getAirFare() {
     return cost;
 }
 
@@ -31,11 +31,10 @@ double totalParkingFees(double parkingFees[][2], int totalDays){
     double totalExpense, cost;
     totalExpense = 0;
     char input;
-    printf("Made it to line 30\n");
     for(int day = 0; day < totalDays; day++){
 
         printf("How much were your parking fees for day %d?\n", day);
-        //program crashes input is 0 due to how strtod works
+        //program crashes input is 0 or letters due to how strtod works
         printf("(If parking fee for day is 0, input -1)\n");
         printf("Covered cost is %d, if you go over you will pay the difference!\n");
         scanf("%s", &input);
