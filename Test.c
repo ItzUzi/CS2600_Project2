@@ -6,10 +6,17 @@
 */
 int main(int argc, char *argv[])
 {
-    int totalDays;
-    totalDays = daysOnTrip();
+    double timeOfArrival;
+    timeOfArrival = getArrivalTime();
+    char dayTime[3];
+
+    if (timeOfArrival < 12)
+        strcpy(dayTime,"am");
+    else
+        strcpy(dayTime, "pm");
     
-    printf("\n\nThe total days on the trip are: %d", totalDays);
+    
+    printf("\n\narrived to destination at: %.2lf%s", timeOfArrival, dayTime);
     
     return 0;
 }
