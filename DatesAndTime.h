@@ -11,7 +11,7 @@
 int daysOnTrip(){
     char input;
     int days = 0;
-    printf("\nPlease input amount of days this trip will take.\n");
+    printf("\nPlease input amount of days this trip will take: ");
     scanf("%s",&input);
     
     days = atoi(&input);
@@ -19,7 +19,7 @@ int daysOnTrip(){
     if (days > 0 && atoi(&input))
         return days;
     else{
-        printf("\nSelect only numbers greater than 0\n");
+        printf("\nInput only numbers greater than 0\n");
         return daysOnTrip();
     }
     

@@ -11,12 +11,14 @@ int main(int argc, char *argv[])
 {
     int amountOfDays;
     //expenses are company allowed, Not day dependent ie: airfare, miles driven
-    double departure, arrival, transportCost, expenses, stayingFees, airfare;
+    double departure, arrival, transportCost, expenses, stayingFees, airfareCost, registrationCost;
     expenses = 0;
     stayingFees = 0;
     printf("Hello welcome to the Travel Expense calculator\n");
-    amountOfDays = daysOnTrip();
     
+    // Function for setting how many days were spent on the trip
+    amountOfDays = daysOnTrip();
+    // Functions for setting the time of departure and time of arrival, respectively. 
     departure = setTime("Departure");
     arrival = setTime("Arrival");
 
@@ -29,6 +31,9 @@ int main(int argc, char *argv[])
             arrival = setTime("Arrival");
         }
 
+    // Function for setting airfare costs
+    airfareCost = airfare();
+
     // creates array showing all meals, as well as differentiating between meals
     double meals[amountOfDays][3];
     mealExpenseDepartureToArrival(departure, arrival, meals, amountOfDays);
@@ -39,6 +44,9 @@ int main(int argc, char *argv[])
            printf("Meal cost is $%.2lf\n", meals[i][j]);
        }
     }
+
+    // Function for setting registration costs
+    registrationCost = registrationFees();
 
     int taxiCost = 0; 
     int parkingFees = 0;
