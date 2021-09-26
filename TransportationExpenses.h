@@ -38,9 +38,7 @@ double milesDriven(){
         printf("Input an acceptable value!\n");
         return milesDriven();
     }
-    
     mileCost = miles * ppm;
-
     return mileCost;
 }
 /**
@@ -67,13 +65,57 @@ double privateVehicle(){
 }
 
 /**
+ * Asks user for taxi cost per day
+ * Puts all values into taxiCost[] in order to
+ * check later on what values are covered by the company
+ * Returns total cost of taxi service
+*/
+double totalTaxiCost(int totalDays, double taxiCost[]){
+    double expense, cost;
+    short coveredCost = 6;
+    char input;
+    expense = 0;
+    for (int day = 0; day < totalDays; day++){
+
+    printf("\nInput ammount spent on taxi services on day %d\n", day);
+    printf("(Covered cost is $%d, anything above will be reimbursed by you)\n", coveredCost);
+    // if strtod returns 0, it will count as a fail and crash the program
+    // Do not enter letters, will crash program
+    printf("(If no taxi services were used, input -1)\n");
+    scanf("%s", &input);
+    cost = strtod(&input, NULL);
+    if (cost == -1)
+        cost = 0;
+
+    taxiCost[day] = cost;
+    expense += cost;
+    }
+    return expense;
+}
+
+/**
  * Function called if transportMethod() returns 1
  * Will calculate total cost of taxi per day
+ * Calls taxiCost() in order to get price of taxi per day 
+ * If taxi was not used, price of taxi per day = 0 
  * returns cost of taxi per day
 */
 double taxi(double taxiCost[], int totalDays){
+    double expense = 0;
+    char input;
+    printf("Did you use a taxi service during your trip?\n(y/n)\n");
+    scanf("%s", &input);
     
-    return 0;
+    if (input == 'y')
+        expense = totalTaxiCost(totalDays, taxiCost);
+    else if (input == 'n')
+        for (int i = 0; i < totalDays; i++)
+            taxiCost[i] = 0;
+    else{
+        printf("Input an acceptable value!\n");
+        return taxi(taxiCost, totalDays);
+    }
+    return expense;
 }
 
 /**
